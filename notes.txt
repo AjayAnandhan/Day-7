@@ -1,0 +1,166 @@
+1.MRF =>Map Reduce Filter
+2.forEach
+3.destructing.
+
+
+MRF:- Array methods 
+    * memory consuming and time consuming overcome. 
+    * to reduce the lines of code.
+    * Realtime usage: it is used extract the data from api.(restcountries)
+
+
+Map:
+
+before map :
+
+var arr = [12,13,14,15]
+expected output: var res = [24,26,28,30]
+
+steps:-
+step 1:- for loop
+step 2:- multiply each element by 2 
+step 3:- create a new array (res) and push into it
+step 4 :- printing the res array
+
+
+after map
+
+map method:- 
+    * it takes function as parameter and apply on  each and evey element in an array
+    * returns an array
+
+syntax:
+    arrayname.map((function))
+    * this function will maximum be arrow function.
+
+example:
+    var res = arr.map(()=>{})
+    console.log(res);
+
+    * inside the map method it takes function as parameter 
+    * the parameter should represent array element.
+    * parameter can be userdefined
+---------------------------------------
+    var arr = [12,13,14,15]
+    var res = arr.map((ele)=>ele*2)
+    console.log(res);
+---------------------------------------
+    var a = ["Apple", "Chrome", "Firefoxe"];
+    var b = a.map((arr)=>arr+"s") // or var b = a.map((a)=>a+"s")
+    console.log(b);
+---------------------------------------
+var a = new XMLHttpRequest();
+a.open("GET","https://restcountries.com/v3.1/all",true)
+a.send()
+a.onload = function(){
+    var b = a.response
+    var c = JSON.parse(b)
+    c.map((arr)=> console.log(arr.name.common))
+}
+-----------------------------------------------------------------------
+
+Filter:
+
+    * filter is  based on condition
+    * it takes function as parameter and apply on each and evey element in an array
+    * if cond is true it will push to array.
+    * if cond is false it will be rejected. 
+
+before filter:
+    var arr = [12,13,14,15]
+    expected output: var res = [12,14]
+steps:
+step 1: for loop
+step 2: divide(%) each element by 2
+step 3: if remainder is 0 push it to the res array else skip
+step 4: printing the res array
+
+After Filter:
+
+Syntax:
+     arrayname.filter((function))
+
+Ex:
+    var arr= [12,13,14,15]
+    var res= arr.filter((ele)=>ele%2===0)
+    console.log(res);
+
+Ex2:
+    var a,b,c,d,e
+    a = new XMLHttpRequest();
+    a.open("GET","https://restcountries.com/v3.1/all",true)
+    a.send()
+    a.onload = function(){
+        b = a.response
+        c = JSON.parse(b)
+        d = c.filter((arr)=> {return arr.population<300000})
+        d.map((arr)=> {console.log(`${arr.name.common}:${arr.population}`)})
+    }
+
+----------------------------------------------------------------
+
+Reduce:
+    * Reduce function will reduce the array into single value.
+    * It is used only for array.
+    * total , summation.
+    * the final output of reduce is a value
+syntax: 
+    arrayname.reduce((acc,cv)=>{})
+    acc=>is the initial value
+    cv=>array element / cuurent values
+
+Ex1: Without initial value
+    var arr = [12,13,14,15]
+    var res = arr.reduce((acc,cv)=>acc +cv )
+    console.log(res);
+
+Ex2: With initial value
+    var arr = [12,13,14,15]
+    var res = arr.reduce((acc,cv)=>acc +cv, 100)  // If nothing given the initial value it will take first value from array
+    console.log(res);
+
+Ex3: To find total population
+var a,b,c,d,e;
+a = new XMLHttpRequest();
+a.open("GET","https://restcountries.com/v3.1/all",true)
+a.send();
+a.onload = function(){
+    b = a.response
+    c = JSON.parse(b)
+    d = c.reduce((acc,cv)=>acc +cv.population, 0)
+    // d = c.map((arr)=> {return arr.population});
+    // e = d.reduce((acc,cv)=>acc +cv, 0)
+    // console.log("World's total population is "+e);
+    console.log("World's total population is "+d);
+}
+----------------------------------------------------------------
+
+forEach: 
+    * to print array elements
+    * it is applicable only for arrays
+    * it takes function as parameter
+    * it will apply on each and every element
+    * it returns undefined
+    * it is unidirectional.
+    * it is generally used for printing purpose.
+
+Ex1:
+var arr = [12,13,14,15]
+var res = arr.forEach((ele)=>console.log(ele))
+console.log(res)
+
+Ex2: 
+var arr = [12,13,14,15]
+arr.forEach((ele)=>console.log(ele*2))
+
+------------------------------------------------------------
+
+Destructuring:
+    * expanding array elements 
+    * similar to spread operator
+    * it allows us to unpack the array elements into bunch of variables.
+ Ex:
+    var arr = ["john","apple"]
+    var [fistname, lastname]=arr
+    console.log(fistname)
+    console.log(lastname)
